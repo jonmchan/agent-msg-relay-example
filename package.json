@@ -1,0 +1,19 @@
+{
+  "name": "agent-msg-relay-example",
+  "private": true,
+  "description": "Monorepo of Cursor agent bots. Copy cursor-agent-template to add one.",
+  "workspaces": [
+    "*"
+  ],
+  "scripts": {
+    "start": "npm start -w cursor-agent-template",
+    "serve": "agent-sdk serve",
+    "validate": "agent-sdk validate"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "devDependencies": {
+    "@grok/agent-sdk": "^0.2.28"
+  }
+}
