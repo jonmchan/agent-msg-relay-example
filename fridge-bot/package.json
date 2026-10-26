@@ -1,0 +1,21 @@
+{
+  "name": "fridge-bot",
+  "private": true,
+  "type": "module",
+  "description": "Fridge bot that collects grocery and restock tasks.",
+  "bin": {
+    "fridge-bot": "./cli.js"
+  },
+  "scripts": {
+    "start": "node ./cli.js",
+    "dev": "agent-sdk dev",
+    "validate": "agent-sdk validate --dir ."
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "@grok/agent-sdk": "^0.2.28",
+    "zod": "^4.6.5"
+  }
+}

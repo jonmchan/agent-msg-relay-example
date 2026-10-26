@@ -7,13 +7,15 @@
   ],
   "scripts": {
     "start": "npm start -w cursor-agent-template",
+    "start:fridge": "npm start -w fridge-bot",
+    "start:assistant": "npm start -w personal-assistant-bot",
     "serve": "agent-sdk serve",
-    "validate": "agent-sdk validate"
+    "validate": "agent-sdk validate --dir fridge-bot && agent-sdk validate --dir personal-assistant-bot && agent-sdk validate --dir cursor-agent-template"
   },
   "engines": {
     "node": ">=22.13"
   },
   "devDependencies": {
-    "@grok/agent-sdk": "^0.2.28"
+    "@grok/agent-sdk": "^0.3.0"
   }
 }

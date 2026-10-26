@@ -4,6 +4,9 @@ import { clearLine, cursorTo, createInterface } from "node:readline";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serve } from "@grok/agent-sdk";
+import { silenceOtelDoubleEndNoise } from "./silence-otel-noise.js";
+
+silenceOtelDoubleEndNoise();
 
 const root = dirname(realpathSync(fileURLToPath(import.meta.url)));
 const color = process.stdout.isTTY === true && process.env.NO_COLOR === undefined;
@@ -314,7 +317,7 @@ for (const schedule of mount?.info.schedules ?? []) {
   write(`${dim("cron")}  ${schedule.name}  ${schedule.cron}\n`);
 }
 write(`${dim(baseUrl)}\n`);
-write(dim("Type a message and press Enter. Ctrl-D or /quit to exit.\n\n"));
+write(dim("Type a message and press Enter. /clear resets the screen. Ctrl-D or /quit to exit.\n\n"));
 showPrompt();
 
 rl.on("line", (line) => {
@@ -326,6 +329,13 @@ rl.on("line", (line) => {
   }
   if (text === "/quit" || text === "/exit") {
     rl.close();
+    return;
+  }
+  if (text === "/clear" || text === "/reset") {
+    write("\u001b[2J\u001b[H");
+    write(`${bold(botName)}\n`);
+    write(dim("Type a message and press Enter. /clear resets the screen. Ctrl-D or /quit to exit.\n\n"));
+    showPrompt();
     return;
   }
   if (turnOpen) {

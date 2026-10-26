@@ -1,0 +1,21 @@
+{
+  "name": "personal-assistant-bot",
+  "private": true,
+  "type": "module",
+  "description": "Personal assistant that lists and summarizes its own task list.",
+  "bin": {
+    "personal-assistant-bot": "./cli.js"
+  },
+  "scripts": {
+    "start": "node ./cli.js",
+    "dev": "agent-sdk dev",
+    "validate": "agent-sdk validate --dir ."
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "@grok/agent-sdk": "^0.2.28",
+    "zod": "^4.6.5"
+  }
+}
