@@ -1,15 +1,18 @@
 {
   "name": "agent-msg-relay-example",
   "private": true,
-  "description": "Monorepo of Cursor agent bots. Copy cursor-agent-template to add one.",
+  "description": "Monorepo of independent Cursor agent bots. Start each bot in its own terminal.",
   "workspaces": [
-    "*"
+    "cursor-agent-template",
+    "fridge-bot",
+    "personal-assistant-bot"
   ],
   "scripts": {
-    "start": "npm start -w cursor-agent-template",
     "start:fridge": "npm start -w fridge-bot",
     "start:assistant": "npm start -w personal-assistant-bot",
-    "serve": "agent-sdk serve",
+    "start:template": "npm start -w cursor-agent-template",
+    "reset-demo": "node ./scripts/reset-demo.mjs",
+    "demo:test": "node ./scripts/demo-test.mjs",
     "validate": "agent-sdk validate --dir fridge-bot && agent-sdk validate --dir personal-assistant-bot && agent-sdk validate --dir cursor-agent-template"
   },
   "engines": {

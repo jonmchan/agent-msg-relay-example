@@ -1,6 +1,11 @@
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineAgent } from "@grok/agent-sdk";
 
 export const botName = "Fridge Bot";
+
+// This package root holds .agent-msg/, bin/, and .agents/ for agent-msg-relay.
+const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 
 export default defineAgent({
   name: botName,
@@ -12,5 +17,6 @@ export default defineAgent({
       { id: "fast", value: "true" },
     ],
   },
+  local: { workspaceDir: packageRoot },
   builtinTools: { reminders: true },
 });

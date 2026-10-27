@@ -1,12 +1,12 @@
 # Fridge Bot
 
-Collects grocery and restock tasks on a **local** list. Nothing else reads this list unless you wire that up later.
+Collects grocery and restock tasks on a **local** list. Runs as its own process with its own `.agent-serve` state. Nothing else reads this list unless you wire that up later.
 
 ```bash
 npm start -w fridge-bot
 ```
 
-Or from this directory: `npm start`.
+Or from this directory: `npm start`. Do not serve this bot from the monorepo root.
 
 ## Tools
 

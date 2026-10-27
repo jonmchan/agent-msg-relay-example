@@ -1,12 +1,12 @@
 # Personal Assistant
 
-Lists and summarizes tasks on its **own** local list. It does not see Fridge Bot's list unless you wire that up later.
+Lists and summarizes tasks on its **own** local list. Runs as its own process with its own `.agent-serve` state. It does not see Fridge Bot's list unless you wire that up later.
 
 ```bash
 npm start -w personal-assistant-bot
 ```
 
-Or from this directory: `npm start`.
+Or from this directory: `npm start`. Do not serve this bot from the monorepo root.
 
 ## Tools
 

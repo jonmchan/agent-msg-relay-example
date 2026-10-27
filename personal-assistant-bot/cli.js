@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { realpathSync } from "node:fs";
 import { clearLine, cursorTo, createInterface } from "node:readline";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serve } from "@grok/agent-sdk";
 import { silenceOtelDoubleEndNoise } from "./silence-otel-noise.js";
@@ -9,6 +9,7 @@ import { silenceOtelDoubleEndNoise } from "./silence-otel-noise.js";
 silenceOtelDoubleEndNoise();
 
 const root = dirname(realpathSync(fileURLToPath(import.meta.url)));
+const stateRoot = join(root, ".agent-serve");
 const color = process.stdout.isTTY === true && process.env.NO_COLOR === undefined;
 const paint = (code, text) => (color ? `\u001b[${code}m${text}\u001b[0m` : text);
 const bold = (text) => paint("1", text);
@@ -18,6 +19,7 @@ const green = (text) => paint("32", text);
 const red = (text) => paint("31", text);
 const magenta = (text) => paint("35", text);
 
+// One process, one state root, this bot only — never the monorepo parent.
 const handle = await serve(root, {
   port: 0,
   host: "127.0.0.1",
@@ -26,6 +28,7 @@ const handle = await serve(root, {
   reminders: true,
   docs: false,
   mode: "single",
+  stateRoot,
 });
 
 const mount = handle.agents[0];
